@@ -29,15 +29,15 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="card bg-base-100 shadow-xl border border-primary/20 p-6">
             <p class="text-base-content/60 text-sm">Total</p>
-            <h2 class="text-3xl font-extrabold text-base-content">8</h2>
+            <h2 id="total-count" class="text-3xl font-extrabold text-base-content">8</h2>
         </div>
         <div class="card bg-base-100 shadow-xl border border-success/20 p-6">
             <p class="text-base-content/60 text-sm">Interview</p>
-            <h2 class="text-3xl font-extrabold text-success">0</h2>
+            <h2 id="int-count" class="text-3xl font-extrabold text-success">0</h2>
         </div>
         <div class="card bg-base-100 shadow-xl border border-error/20 p-6">
             <p class="text-base-content/60 text-sm">Rejected</p>
-            <h2 class="text-3xl font-extrabold ">0</h2>
+            <h2  class="text-3xl font-extrabold ">0</h2>
         </div>
     </div>
 
@@ -66,7 +66,7 @@
             <div class="mt-4"><span class="badge badge-primary badge-outline font-bold">NOT APPLIED</span></div>
             <p class="text-base-content/70 text-sm mt-4 line-clamp-2">Develop responsive web applications using React and Tailwind CSS.</p>
             <div class="flex gap-3 mt-5">
-                <button class="btn btn-xs btn-success btn-outline">Interview</button>
+                <button  class="btn btn-xs btn-success btn-outline int-button">Interview</button>
                 <button class="btn btn-xs btn-error btn-outline">Rejected</button>
             </div>
         </div>
@@ -83,7 +83,7 @@
             <div class="mt-4"><span class="badge badge-primary badge-outline font-bold">NOT APPLIED</span></div>
             <p class="text-base-content/70 text-sm mt-4 line-clamp-2">Build secure REST APIs using Node.js and Express for enterprise apps.</p>
             <div class="flex gap-3 mt-5">
-                <button class="btn btn-xs btn-success btn-outline">Interview</button>
+                <button id="'btn-green" class="btn btn-xs btn-success btn-outline">Interview</button>
                 <button class="btn btn-xs btn-error btn-outline">Rejected</button>
             </div>
         </div>
@@ -192,5 +192,7 @@
 
     </div>
 </section>
+
+    <script src="script/script.js"></script>
 </body>
 </html>
