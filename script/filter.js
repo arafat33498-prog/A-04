@@ -1,12 +1,12 @@
-window.currentActiveFilter = 'ALL'; 
+window.currentActiveTab = 'ALL'; 
 
 function applyFilter(filter) {
-    window.currentActiveFilter = filter;
-    const jobCards = document.querySelectorAll('.job-card'); 
-    const emptyMessage = document.getElementById('empty-message');
+    window.currentActiveTab = filter;
+    const cards = document.querySelectorAll('.job-card'); 
+    const emptyMsg = document.getElementById('empty-message');
     let hasJobs = false; 
 
-    jobCards.forEach(card => {
+    cards.forEach(card => {
         const badge = card.querySelector('.status-badge');
         const status = badge ? badge.innerText.trim().toUpperCase() : "";
         
@@ -19,16 +19,25 @@ function applyFilter(filter) {
     });
 
     if (hasJobs) {
-        emptyMessage.classList.add('hidden'); 
-        emptyMessage.classList.remove('flex');
+        emptyMsg.classList.add('hidden'); 
+        emptyMsg.classList.remove('flex');
     } else {
-        emptyMessage.classList.remove('hidden'); 
-        emptyMessage.classList.add('flex');      
+        emptyMsg.classList.remove('hidden'); 
+        emptyMsg.classList.add('flex');      
     }
 
+ 
     const btns = [document.getElementById('all'), document.getElementById('interview'), document.getElementById('rejected')];
-    btns.forEach(b => b.classList.replace('btn-primary', 'btn-outline'));
-    document.getElementById(filter.toLowerCase()).classList.replace('btn-outline', 'btn-primary');
+    btns.forEach(btn => {
+        if(btn) btn.classList.replace('btn-primary', 'btn-outline');
+    });
+    const activeBtn = document.getElementById(filter.toLowerCase());
+    if (activeBtn) activeBtn.classList.replace('btn-outline', 'btn-primary');
+
+   
+    if (typeof updateAvailableJobsText === 'function') {
+        updateAvailableJobsText(filter);
+    }
 }
 
 document.getElementById('all').addEventListener('click', () => applyFilter('ALL'));
