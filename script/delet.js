@@ -1,39 +1,21 @@
-const trashButtons = document.querySelectorAll('.trash-btn');
-const totalDisplayElement = document.getElementById('total'); 
-
-
-trashButtons.forEach((btn) => {
+document.querySelectorAll('.trash-btn').forEach((btn) => {
     btn.addEventListener('click', function() {
-        
         const card = this.closest('.job-card'); 
-
         if (card) {
-           
             card.remove();
-
-          
-            let currentTotal = parseInt(totalDisplayElement.innerText);
+            const totalDisplay = document.getElementById('total');
+            let currentTotal = parseInt(totalDisplay.innerText);
             if (currentTotal > 0) {
-                currentTotal--;
-                totalDisplayElement.innerText = currentTotal;
+                totalDisplay.innerText = --currentTotal;
             }
-            refreshXofY();
+            
+            
+            if (window.currentActiveFilter === 'ALL') {
+                document.getElementById('job-stat-text').innerText = `${currentTotal} jobs`;
+            } else {
+                if (typeof updateAvailableJobsText === "function") updateAvailableJobsText(window.currentActiveFilter);
+            }
+            if (typeof applyFilter === "function") applyFilter(window.currentActiveFilter);
         }
     });
 });
-
-
-function refreshXofY() {
-    
-    const interviewBtn = document.getElementById('interview');
-    const rejectedBtn = document.getElementById('rejected');
-    
-    let activeTab = 'ALL';
-    if (interviewBtn.classList.contains('btn-primary')) activeTab = 'INTERVIEW';
-    if (rejectedBtn.classList.contains('btn-primary')) activeTab = 'REJECTED';
-    
-    
-    if (typeof updateAvailableJobsText === "function") {
-        updateAvailableJobsText(activeTab);
-    }
-}

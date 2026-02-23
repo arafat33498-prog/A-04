@@ -6,7 +6,7 @@ const allBtn = document.getElementById('all');
 const interviewBtn = document.getElementById('interview');
 const rejectedBtn = document.getElementById('rejected');
 
-let currentActiveTab = 'ALL'; // এটা যোগ করা হয়েছে (না হলে error দেবে)
+let currentActiveTab = 'ALL'; 
 
 function updateAvailableJobsText(filterName) {
     const currentFilter = filterName.toUpperCase();
@@ -22,9 +22,9 @@ function updateAvailableJobsText(filterName) {
     });
 
     if (currentFilter === 'ALL') {
-        jobStatText.innerText = `${totalJobsValue} jobs`;   // ✅ ঠিক করা হয়েছে
+        jobStatText.innerText = `${totalJobsValue} jobs`;   
     } else {
-        jobStatText.innerText = `${visibleCount} of ${totalJobsValue} jobs`;  // ✅ ঠিক করা হয়েছে
+        jobStatText.innerText = `${visibleCount} of ${totalJobsValue} jobs`;  
     }
 }
 

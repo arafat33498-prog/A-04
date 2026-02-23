@@ -1,14 +1,14 @@
-const jobCards = document.querySelectorAll('.job-card'); 
-const btnAll = document.getElementById('all');
-const btnInterview = document.getElementById('interview');
-const btnRejected = document.getElementById('rejected');
-const emptyMessage = document.getElementById('empty-message'); 
+window.currentActiveFilter = 'ALL'; 
 
 function applyFilter(filter) {
+    window.currentActiveFilter = filter;
+    const jobCards = document.querySelectorAll('.job-card'); 
+    const emptyMessage = document.getElementById('empty-message');
     let hasJobs = false; 
 
     jobCards.forEach(card => {
-        const status = card.querySelector('.status-badge').innerText.trim().toUpperCase();
+        const badge = card.querySelector('.status-badge');
+        const status = badge ? badge.innerText.trim().toUpperCase() : "";
         
         if (filter === 'ALL' || status === filter) {
             card.style.display = 'block';
@@ -18,7 +18,6 @@ function applyFilter(filter) {
         }
     });
 
-    
     if (hasJobs) {
         emptyMessage.classList.add('hidden'); 
         emptyMessage.classList.remove('flex');
@@ -27,11 +26,11 @@ function applyFilter(filter) {
         emptyMessage.classList.add('flex');      
     }
 
-    [btnAll, btnInterview, btnRejected].forEach(b => b.classList.replace('btn-primary', 'btn-outline'));
+    const btns = [document.getElementById('all'), document.getElementById('interview'), document.getElementById('rejected')];
+    btns.forEach(b => b.classList.replace('btn-primary', 'btn-outline'));
     document.getElementById(filter.toLowerCase()).classList.replace('btn-outline', 'btn-primary');
 }
 
-
-btnAll.addEventListener('click', () => applyFilter('ALL'));
-btnInterview.addEventListener('click', () => applyFilter('INTERVIEW'));
-btnRejected.addEventListener('click', () => applyFilter('REJECTED'));
+document.getElementById('all').addEventListener('click', () => applyFilter('ALL'));
+document.getElementById('interview').addEventListener('click', () => applyFilter('INTERVIEW'));
+document.getElementById('rejected').addEventListener('click', () => applyFilter('REJECTED'));
